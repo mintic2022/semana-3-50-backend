@@ -9,7 +9,6 @@ module.exports = (sequelize, type) =>{
             allowNull: false,
             autoIncrement: true
         },
-        user: type.STRING,
         name: type.STRING,
         email: type.STRING,
         password: type.STRING
