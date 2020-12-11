@@ -7,6 +7,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
+const UserModel = require('./users');
 
 let sequelize;
 if (config.use_env_variable) {
@@ -30,6 +31,15 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+
+// Creacion de la instancia del modelo
+const User = UserModel(sequelize, Sequelize);
+
+// Sincronizacion con la DB
+sequelize.sync({ force: false})
+    .then( () => {
+        console.log('Sincronizacion Exitosa !!!')
+    });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
