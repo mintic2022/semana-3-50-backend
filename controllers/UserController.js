@@ -49,7 +49,6 @@ exports.login = async(req,res,next) =>{
 
 exports.list = async(req,res,next) =>{
     try {
-        console.log(db.sequelize.User);
         const users = await db.user.findAll();
         res.status(200).json(users);
     } catch (error) {
