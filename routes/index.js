@@ -1,12 +1,7 @@
 const router = require('express').Router();
-// aqui se configuran los manejadores de cada ruta (articulos, servicios, categorias, usuariops, etc)
-const apiRouterUser = require('./api/users');  
+const apiRouterAuth = require('./api/signin');  
 
-router.use('/user',apiRouterUser);
-
-
-
-// //manejador de rutas
-// router.use('/', apiRouterUSer);
+// manejador de rutas
+router.use('/auth',apiRouterAuth);
 
 module.exports = router;

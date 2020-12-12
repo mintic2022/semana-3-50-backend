@@ -16,5 +16,3 @@
         "storage": "./database.sqlite3"
     }
 }
-
-profe, tengo una duda con sequelize, en qué parte le digo que utilice los parámetros para el ambiente development al momento de desplegar el proyecto ? 
