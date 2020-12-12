@@ -40,7 +40,7 @@ Object.keys(db).forEach(modelName => {
 const User = UserModel(sequelize, Sequelize);
 
 // Sincronizacion con la DB
-sequelize.sync({ force: false})
+sequelize.sync({ force: true})
     .then( () => {
         console.log('Sincronizacion Exitosa !!!')
     });

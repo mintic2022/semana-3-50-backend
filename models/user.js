@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 
 module.exports = (sequelize, type) =>{
-    return sequelize.define('reto3', {
+    return sequelize.define('reto3s', {
         // Atributos del modelo de usuarios
         id: {
             type: type.INTEGER,

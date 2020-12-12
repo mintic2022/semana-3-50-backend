@@ -1,15 +1,18 @@
 const express = require('express');
-const app = express();
-const controller = require('./controller/controller.js');
-
+const morgan = require('morgan')
 //ruta para la API
 const apiRouter = require('./routes');
+const bodyParser = require('body-parser');
+
+const app = express();
 
 // Recibir peticiones en formato JSON
-app.use(express.json());
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({extended:true}));
 
 // API Ruta
-app.get('/api', apiRouter);
+app.use('/api', apiRouter);
 
 //ruta de solo Administradores
 app.get('/admin', function(req, res){
