@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userController = require('../../controllers/UserController');
 
-//Metodos del API
+//Metodos de la API
 router.get('/list', userController.list);
 //router.post('/register', userController.register);
 
