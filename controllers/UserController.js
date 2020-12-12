@@ -1,4 +1,4 @@
-const models = require('../models');
+const db = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { use } = require('../routes');
@@ -6,15 +6,15 @@ const config = require('../secret/config');
 
 exports.login = async(req,res,next) =>{
     try {
-      const user = await models.User.findOne({where: {email: req.body.email}});
+      const userFind = await db.user.findOne({where: {email: req.body.email}});
 
-      if(user){
-            const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+      if(userFind){
+            const passwordIsValid = bcrypt.compareSync(req.body.password, userFind.password);
             if (passwordIsValid) {
                 const token = jwt.sign({
-                    id : user.id,
-                    name : user.username,
-                    email:user.email
+                    id : userFind.id,
+                    name : userFind.username,
+                    email: userFind.email
                     },
                     config.secret,{
                     expiresIn: 600
@@ -40,7 +40,7 @@ exports.login = async(req,res,next) =>{
 // exports.register = async(req,res,next) =>{
 //     try {
 //         req.body.password = bcrypt.hashSync(req.body.password,10);
-//         const user = await models.User.create(req.body);
+//         const user = await db.user.create(req.body);
 //         res.status(200).json(User);        
 //     } catch (error) {
         
@@ -49,8 +49,9 @@ exports.login = async(req,res,next) =>{
 
 exports.list = async(req,res,next) =>{
     try {
-        const users = await models.User.findAll();  
-        res.status(200).json(users);       
+        console.log(db.sequelize.User);
+        const users = await db.user.findAll();
+        res.status(200).json(users);
     } catch (error) {
         res.status(500).send({message: 'error !!!'});
         next(error);
