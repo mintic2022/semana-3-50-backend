@@ -13,7 +13,7 @@ exports.login = async(req,res,next) =>{
             if (passwordIsValid) {
                 const token = jwt.sign({
                     id : userFind.id,
-                    name : userFind.username,
+                    name : userFind.name,
                     email: userFind.email
                     },
                     config.secret,{

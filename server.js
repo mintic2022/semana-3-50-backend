@@ -5,6 +5,7 @@ que contiene la logica */
 const express = require('express');
 const db = require('./models');
 const app = express()
+const cors = require('cors')
 const bodyParser = require('body-parser');
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -13,7 +14,7 @@ app.use(function(req, res, next) {
 });
 const apiRouter = require('./routes');
 
-
+app.use(cors())
 // body parser para manejo de los JSON
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
